@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/liquid-state/iwa-core#readme",
   "peerDependencies": {
-    "@liquid-state/iwa-core": "~0.2"
+    "@liquid-state/iwa-core": "^1"
   },
   "devDependencies": {
-    "@liquid-state/iwa-core": "~0.2",
+    "@liquid-state/iwa-core": "^1",
     "@types/jest": "^22.1.2",
     "@types/lodash": "^4.14.103",
     "jest": "^22.3.0",
