@@ -1,6 +1,6 @@
 {
   "name": "@liquid-state/iwa-keyvalue",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Keyvalue store for Liquid State IWAs",
   "files": [
     "dist/"
