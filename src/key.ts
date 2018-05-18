@@ -73,7 +73,7 @@ export default class Key {
         key: this.key,
         value: this.encodeValue(),
         permissions: this.permissions
-      } as any
+      }
     };
   }
 

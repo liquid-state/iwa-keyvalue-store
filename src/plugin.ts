@@ -1,8 +1,9 @@
 import { App } from '@liquid-state/iwa-core';
 import KeyValueStore from "./store";
+import { KeyPermissions } from './key'
 
 export interface Config {
-  defaultPermissions?: object
+  defaultPermissions?: KeyPermissions
 }
 
 /** A plugin for iwa-core/App to attach the KeyValue store with configurable default permissions */
@@ -17,7 +18,7 @@ class KVPlugin {
     return new KVPlugin(defaultPermissions);
   }
 
-  constructor(private defaultPermissions?: object) { }
+  constructor(private defaultPermissions?: KeyPermissions) { }
 
   // Ensure key is available on the instance as well as the Prototype.
   key = KVPlugin.key;

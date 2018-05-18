@@ -1,9 +1,9 @@
 import { ICommunicator } from '@liquid-state/iwa-core/dist/communicator';
 import { Messages } from '@liquid-state/iwa-core';
-import Key, { Value } from './key';
+import Key, { Value, KeyPermissions } from './key';
 
 export default class KeyValueStore {
-  constructor(private communicator: ICommunicator, private defaultPermissions?: object) {}
+  constructor(private communicator: ICommunicator, private defaultPermissions?: KeyPermissions) {}
 
   get(key: string) {
     return this.communicator.send(Messages.kv.get([key]))
@@ -15,10 +15,10 @@ export default class KeyValueStore {
 
   set(key: Key) {
     const keyData = key.prepareForSave();
-    if (keyData.useDefaultPermissions) {
+    if (keyData.useDefaultPermissions && this.defaultPermissions) {
       keyData.data.permissions = this.defaultPermissions;
     }
-    return this.communicator.send(Messages.kv.set(keyData.data));
+    return this.communicator.send(Messages.kv.set([keyData.data]));
   }
 
   create(key: string, value: Value) {
