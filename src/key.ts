@@ -59,10 +59,6 @@ export default class Key {
     if (typeof this.value === "string") {
       return this.value;
     }
-    if (this.value === null) {
-      // JSON.stringify(null) === "null" which is not what we want.
-      return null;
-    }
     return JSON.stringify(this.value);
   }
 

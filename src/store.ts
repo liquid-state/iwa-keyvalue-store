@@ -5,7 +5,7 @@ import Key, { Value, KeyPermissions } from './key';
 export default class KeyValueStore {
   constructor(private communicator: ICommunicator, private defaultPermissions?: KeyPermissions) {}
 
-  get(key: string) {
+  get(key: string): Promise<Key> {
     return this.communicator.send(Messages.kv.get([key]))
       .then(response => {
         const value = response[key].found ? response[key].value : null;
@@ -13,12 +13,12 @@ export default class KeyValueStore {
       });
   }
 
-  set(key: Key) {
+  set(key: Key): void {
     const keyData = key.prepareForSave();
     if (keyData.useDefaultPermissions && this.defaultPermissions) {
       keyData.data.permissions = this.defaultPermissions;
     }
-    return this.communicator.send(Messages.kv.set([keyData.data]));
+    this.communicator.send(Messages.kv.set([keyData.data]));
   }
 
   create(key: string, value: Value) {
